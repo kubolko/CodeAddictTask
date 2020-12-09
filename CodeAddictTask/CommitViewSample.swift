@@ -38,18 +38,37 @@ struct CommitViewSample: View {
                     Image(systemName: "star")
                     Text(Score)
                 }
-//                Spacer().frame(height: 22)
-                }
+                Spacer().frame(height: 22)
+                }.padding(.horizontal)
                     Spacer()
                 }
             }
         }
                 HStack(){
                     Text(RepoTitle)
+                        .font(.headline)
                     Spacer()
-                    Text("View Online")
+                    Button(action: {
+                       print("Sharing Repo")
+                    }){ZStack(){
+                        Rectangle()
+                            .fill(Color(.secondarySystemBackground))
+                            .frame(width: 118, height: 30)
+                            .cornerRadius(17)
+                        Text("View Online")
+                            .font(.callout)
+                            .foregroundColor(Color.blue)
+                        
+                    }
+                    
+                    }
                 }.padding(.horizontal)
-                Text("Commits History")
+                HStack(){
+                    Text("Commits History")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                    Spacer()
+                }.padding(.horizontal)
                 ScrollView{
                     CommitHistory()
                 }.frame(width: geo.size.width - 16)
