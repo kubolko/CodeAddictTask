@@ -19,15 +19,28 @@ struct CommitViewSample: View {
         ZStack(){
             Image(Imagee)
                 .resizable()
-                .frame(height: 263)
+                .frame(width: geo.size.width, height: 263)
                 .scaledToFill()
-            VStack(){
+            VStack{
                 Spacer()
-                Text("Repo by")
-                Text(AuthorName)
+                HStack{
+                    VStack(alignment: .leading, spacing: 10){
+                        Spacer()
+                    Text("REPO BY")
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                        .opacity(0.6)
+                    Text(AuthorName)
+                        .font(.largeTitle)
+                        .bold()
+                        .foregroundColor(Color.white)
                 HStack(){
                     Image(systemName: "star")
                     Text(Score)
+                }
+//                Spacer().frame(height: 22)
+                }
+                    Spacer()
                 }
             }
         }
@@ -35,7 +48,34 @@ struct CommitViewSample: View {
                     Text(RepoTitle)
                     Spacer()
                     Text("View Online")
+                }.padding(.horizontal)
+                Text("Commits History")
+                ScrollView{
+                    CommitHistory()
+                }.frame(width: geo.size.width - 16)
+               
+          
+                Button(action: {
+                   print("Sharing Repo")
+                }) {
+                    ZStack{
+                        Rectangle()
+                            .fill(Color(.secondarySystemBackground))
+                            .frame( height: 50)
+                            .cornerRadius(10)
+                            .padding(.horizontal)
+                        HStack(){
+                            Image(systemName: "share")
+                                .foregroundColor(Color.blue)
+                            Text("Share Repo")
+                                .foregroundColor(Color.blue)
+                            
+                        }
+                        
+                    }
                 }
+                Spacer()
+                    .frame(height: 44)
     }
 }
 }
