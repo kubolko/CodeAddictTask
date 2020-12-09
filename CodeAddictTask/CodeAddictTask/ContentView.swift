@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var searchText = ""
     @State private var showCancelButton: Bool = false
     @ObservedObject var viewModel: RepositoryListViewModel
     
@@ -17,40 +16,25 @@ struct ContentView: View {
         
         NavigationView {
             ScrollView{
-                VStack {
-                    // Search view
-                    HStack {
-                        HStack {
-                            Image(systemName: "magnifyingglass")
-                            
-                            TextField("search", text: $searchText, onEditingChanged: { isEditing in
-                                self.showCancelButton = true
-                            }, onCommit: {
-                                print("onCommit")
-                            }).foregroundColor(.primary)
-                            
-                            Button(action: {
-                                self.searchText = ""
-                            }) {
-                                Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
-                            }
-                        }
-                        .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
-                        .foregroundColor(.secondary)
-                        .background(Color(.secondarySystemBackground))
-                        .cornerRadius(10.0)
+                LazyVStack {
+                    SearchBar(text:  $viewModel.text, placeholder: "Search")
+                    Button(action: {
+                        self.viewModel.search()
+                       print("Sharing Repo")
+                    }){ZStack(){
+                        Rectangle()
+                            .fill(Color(.secondarySystemBackground))
+                            .frame(width: 118, height: 30)
+                            .cornerRadius(17)
+                        Text("View Online")
+                            .font(.callout)
+                            .foregroundColor(Color.blue)
                         
-                        if showCancelButton  {
-                            Button("Cancel") {
-                                UIApplication.shared.endEditing(true) // this must be placed before the other commands here
-                                self.searchText = ""
-                                self.showCancelButton = false
-                            }
-                            .foregroundColor(Color(.systemBlue))
-                        }
                     }
-                    .padding(.horizontal)
-                    .navigationBarHidden(showCancelButton) // .animation(.default) // animation does not work properly
+                    
+                    }
+                   
+                
                     HStack(){
                         Text("Repositories")
                             .font(.title)
@@ -59,7 +43,7 @@ struct ContentView: View {
                         
                     }
                     .padding()
-                    ScrollView{
+                    VStack() {
                         
                         if viewModel.isLoading {
                             Text("Loading...")
@@ -70,9 +54,9 @@ struct ContentView: View {
                             
                             ForEach(viewModel.repositories) { repository in
                                 
-                                NavigationLink(destination:
+                                NavigationLink(destination: CommitView(repo: repository)
                                                 
-                                                .navigationBarTitle(Text(repository.fullName))
+                                              
                                 ) {
                                     Repo(repo: repository)
                                 }
@@ -92,19 +76,59 @@ struct ContentView: View {
             }
         }
     }
+    
 }
+struct SearchBar: UIViewRepresentable {
 
+    @Binding var text: String
+    
+    var placeholder: String
 
+    class Coordinator: NSObject, UISearchBarDelegate {
 
-struct ContentView_Previews2: PreviewProvider {
-    static var previews: some View {
-        
-        ContentView()
-        
-        
-        
+        @Binding var text: String
+
+        init(text: Binding<String>) {
+            _text = text
+        }
+
+        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            text = searchText
+        }
+        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+            
+        }
+    }
+
+    func makeCoordinator() -> SearchBar.Coordinator {
+        return Coordinator(text: $text)
+    }
+
+    func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
+        let searchBar = UISearchBar(frame: .zero)
+        searchBar.delegate = context.coordinator
+        searchBar.placeholder = placeholder
+        searchBar.searchBarStyle = .minimal
+        searchBar.autocapitalizationType = .none
+        return searchBar
+    }
+
+    func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<SearchBar>) {
+        uiView.text = text
     }
 }
+
+
+
+//struct ContentView_Previews2: PreviewProvider {
+//    static var previews: some View {
+//
+//        ContentView(viewModel: RepositoryListViewModel)
+//
+//
+//
+//    }
+//}
 
 extension UIApplication {
     func endEditing(_ force: Bool) {

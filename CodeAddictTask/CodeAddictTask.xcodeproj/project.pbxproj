@@ -22,6 +22,8 @@
 		82C107FB2581628400CF715A /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C107F42581628400CF715A /* Combine.swift */; };
 		82C107FC2581628400CF715A /* URLSession.Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C107F52581628400CF715A /* URLSession.Combine.swift */; };
 		82C108002581661F00CF715A /* RepositoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C107FF2581661F00CF715A /* RepositoryListViewModel.swift */; };
+		82C10803258167A800CF715A /* CommitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C10802258167A800CF715A /* CommitView.swift */; };
+		82C1080B258175F100CF715A /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C1080A258175F100CF715A /* SearchBar.swift */; };
 		82DD59702580D76F00BDACF8 /* CommitHistorySample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DD596F2580D76F00BDACF8 /* CommitHistorySample.swift */; };
 		82EA99E52580419600689893 /* CommitSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EA99E42580419600689893 /* CommitSample.swift */; };
 /* End PBXBuildFile section */
@@ -45,6 +47,8 @@
 		82C107F42581628400CF715A /* Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Combine.swift; sourceTree = "<group>"; };
 		82C107F52581628400CF715A /* URLSession.Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSession.Combine.swift; sourceTree = "<group>"; };
 		82C107FF2581661F00CF715A /* RepositoryListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryListViewModel.swift; sourceTree = "<group>"; };
+		82C10802258167A800CF715A /* CommitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitView.swift; sourceTree = "<group>"; };
+		82C1080A258175F100CF715A /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		82DD596F2580D76F00BDACF8 /* CommitHistorySample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitHistorySample.swift; sourceTree = "<group>"; };
 		82EA99E42580419600689893 /* CommitSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitSample.swift; sourceTree = "<group>"; };
 		A84E444497CBADCA2ECAF76B /* Pods-CodeAddictTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeAddictTask.release.xcconfig"; path = "Target Support Files/Pods-CodeAddictTask/Pods-CodeAddictTask.release.xcconfig"; sourceTree = "<group>"; };
@@ -104,10 +108,12 @@
 				82C107ED2581628200CF715A /* Model */,
 				82065C3D25801B4900192D65 /* CodeAddictTaskApp.swift */,
 				829708F425801D82005B128F /* ContentView.swift */,
+				82C1080A258175F100CF715A /* SearchBar.swift */,
 				82C107FF2581661F00CF715A /* RepositoryListViewModel.swift */,
 				829708F725801E2F005B128F /* Repo.swift */,
 				82EA99E42580419600689893 /* CommitSample.swift */,
 				828BCF132580C966001295BD /* CommitViewSample.swift */,
+				82C10802258167A800CF715A /* CommitView.swift */,
 				82DD596F2580D76F00BDACF8 /* CommitHistorySample.swift */,
 				82065C4125801B4E00192D65 /* Assets.xcassets */,
 				82065C4625801B4E00192D65 /* Info.plist */,
@@ -263,9 +269,11 @@
 				82DD59702580D76F00BDACF8 /* CommitHistorySample.swift in Sources */,
 				82065C3E25801B4900192D65 /* CodeAddictTaskApp.swift in Sources */,
 				82C107F62581628400CF715A /* ItemResponse.swift in Sources */,
+				82C1080B258175F100CF715A /* SearchBar.swift in Sources */,
 				82C107F92581628400CF715A /* ErrorResponse.swift in Sources */,
 				82C108002581661F00CF715A /* RepositoryListViewModel.swift in Sources */,
 				82C107FC2581628400CF715A /* URLSession.Combine.swift in Sources */,
+				82C10803258167A800CF715A /* CommitView.swift in Sources */,
 				828BCF142580C966001295BD /* CommitViewSample.swift in Sources */,
 				829708F525801D82005B128F /* ContentView.swift in Sources */,
 				829708F825801E2F005B128F /* Repo.swift in Sources */,

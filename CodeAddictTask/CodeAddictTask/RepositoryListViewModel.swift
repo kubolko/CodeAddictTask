@@ -64,6 +64,7 @@ final class RepositoryListViewModel: ObservableObject {
             .assign(to: \.errorMessage, on: self)
             .store(in: &cancellables)
     }
+ 
 
     func search() {
         _searchWithQuery.send(text)

@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct CodeAddictTaskApp: App {
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: RepositoryListViewModel(mainScheduler: DispatchQueue.main))
         }
     }
 }
