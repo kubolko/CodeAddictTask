@@ -50,7 +50,14 @@ struct ContentView: View {
                 }
                 .padding(.horizontal)
                 .navigationBarHidden(showCancelButton) // .animation(.default) // animation does not work properly
+                HStack(){
                 Text("Repositories")
+                    .font(.title)
+                    .bold()
+                    Spacer()
+                    
+                }
+                .padding()
                 ScrollView{
                     CommitSample()
                 }

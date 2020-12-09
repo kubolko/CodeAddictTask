@@ -11,6 +11,7 @@
 		82065C3E25801B4900192D65 /* CodeAddictTaskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82065C3D25801B4900192D65 /* CodeAddictTaskApp.swift */; };
 		82065C4225801B4E00192D65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82065C4125801B4E00192D65 /* Assets.xcassets */; };
 		82065C4525801B4E00192D65 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82065C4425801B4E00192D65 /* Preview Assets.xcassets */; };
+		828BCF142580C966001295BD /* CommitViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828BCF132580C966001295BD /* CommitViewSample.swift */; };
 		829708F525801D82005B128F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829708F425801D82005B128F /* ContentView.swift */; };
 		829708F825801E2F005B128F /* Commit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829708F725801E2F005B128F /* Commit.swift */; };
 		8297090425803A3A005B128F /* GithubRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8297090325803A3A005B128F /* GithubRepo.swift */; };
@@ -26,6 +27,7 @@
 		82065C4125801B4E00192D65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82065C4425801B4E00192D65 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		82065C4625801B4E00192D65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		828BCF132580C966001295BD /* CommitViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitViewSample.swift; sourceTree = SOURCE_ROOT; };
 		829708F425801D82005B128F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		829708F725801E2F005B128F /* Commit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commit.swift; sourceTree = "<group>"; };
 		8297090325803A3A005B128F /* GithubRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepo.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				829708F425801D82005B128F /* ContentView.swift */,
 				829708F725801E2F005B128F /* Commit.swift */,
 				82EA99E42580419600689893 /* CommitSample.swift */,
+				828BCF132580C966001295BD /* CommitViewSample.swift */,
 				82065C4125801B4E00192D65 /* Assets.xcassets */,
 				82065C4625801B4E00192D65 /* Info.plist */,
 				82065C4325801B4E00192D65 /* Preview Content */,
@@ -228,6 +231,7 @@
 			files = (
 				82EA99E52580419600689893 /* CommitSample.swift in Sources */,
 				82065C3E25801B4900192D65 /* CodeAddictTaskApp.swift in Sources */,
+				828BCF142580C966001295BD /* CommitViewSample.swift in Sources */,
 				8297090425803A3A005B128F /* GithubRepo.swift in Sources */,
 				8297092D25803AAE005B128F /* GithubClient.swift in Sources */,
 				829708F525801D82005B128F /* ContentView.swift in Sources */,
