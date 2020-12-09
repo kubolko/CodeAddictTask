@@ -8,68 +8,87 @@
 import SwiftUI
 
 struct ContentView: View {
-    let array = ["Peter", "Paul", "Mary", "Anna-Lena", "George", "John", "Greg", "Thomas", "Robert", "Bernie", "Mike", "Benno", "Hugo", "Miles", "Michael", "Mikel", "Tim", "Tom", "Lottie", "Lorrie", "Barbara"]
+    
     @State private var searchText = ""
     @State private var showCancelButton: Bool = false
-
+    @ObservedObject var viewModel: RepositoryListViewModel
+    
     var body: some View {
-
+        
         NavigationView {
             ScrollView{
-            VStack {
-                // Search view
-                HStack {
+                VStack {
+                    // Search view
                     HStack {
-                        Image(systemName: "magnifyingglass")
-
-                        TextField("search", text: $searchText, onEditingChanged: { isEditing in
-                            self.showCancelButton = true
-                        }, onCommit: {
-                            print("onCommit")
-                        }).foregroundColor(.primary)
-
-                        Button(action: {
-                            self.searchText = ""
-                        }) {
-                            Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                            
+                            TextField("search", text: $searchText, onEditingChanged: { isEditing in
+                                self.showCancelButton = true
+                            }, onCommit: {
+                                print("onCommit")
+                            }).foregroundColor(.primary)
+                            
+                            Button(action: {
+                                self.searchText = ""
+                            }) {
+                                Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
+                            }
                         }
-                    }
-                    .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
-                    .foregroundColor(.secondary)
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(10.0)
-
-                    if showCancelButton  {
-                        Button("Cancel") {
+                        .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
+                        .foregroundColor(.secondary)
+                        .background(Color(.secondarySystemBackground))
+                        .cornerRadius(10.0)
+                        
+                        if showCancelButton  {
+                            Button("Cancel") {
                                 UIApplication.shared.endEditing(true) // this must be placed before the other commands here
                                 self.searchText = ""
                                 self.showCancelButton = false
+                            }
+                            .foregroundColor(Color(.systemBlue))
                         }
-                        .foregroundColor(Color(.systemBlue))
                     }
-                }
-                .padding(.horizontal)
-                .navigationBarHidden(showCancelButton) // .animation(.default) // animation does not work properly
-                HStack(){
-                Text("Repositories")
-                    .font(.title)
-                    .bold()
-                    Spacer()
+                    .padding(.horizontal)
+                    .navigationBarHidden(showCancelButton) // .animation(.default) // animation does not work properly
+                    HStack(){
+                        Text("Repositories")
+                            .font(.title)
+                            .bold()
+                        Spacer()
+                        
+                    }
+                    .padding()
+                    ScrollView{
+                        
+                        if viewModel.isLoading {
+                            Text("Loading...")
+                        } else {
+                            viewModel.errorMessage.map(Text.init)?
+                                .lineLimit(nil)
+                                .multilineTextAlignment(.center)
+                            
+                            ForEach(viewModel.repositories) { repository in
+                                
+                                NavigationLink(destination:
+                                                
+                                                .navigationBarTitle(Text(repository.fullName))
+                                ) {
+                                    Repo(repo: repository)
+                                }
+                            }
+                        }
+                    }
                     
+                    //                List {
+                    //                    // Filtered list of names
+                    //                    ForEach(array.filter{$0.hasPrefix(searchText) || searchText == ""}, id:\.self) {
+                    //                        searchText in Text(searchText)
+                    //                    }
+                    //                }
+                    .navigationBarTitle(Text("Search"))
+                    .resignKeyboardOnDragGesture()
                 }
-                .padding()
-                ScrollView{
-                    CommitSample()
-                }
-//                List {
-//                    // Filtered list of names
-//                    ForEach(array.filter{$0.hasPrefix(searchText) || searchText == ""}, id:\.self) {
-//                        searchText in Text(searchText)
-//                    }
-//                }
-                .navigationBarTitle(Text("Search"))
-                .resignKeyboardOnDragGesture()
-            }
             }
         }
     }
@@ -79,10 +98,10 @@ struct ContentView: View {
 
 struct ContentView_Previews2: PreviewProvider {
     static var previews: some View {
-
-          ContentView()
-          
-          
+        
+        ContentView()
+        
+        
         
     }
 }
