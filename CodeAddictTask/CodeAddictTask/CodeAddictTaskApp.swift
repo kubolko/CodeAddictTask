@@ -12,7 +12,7 @@ struct CodeAddictTaskApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView(viewModel: RepositoryListViewModel(mainScheduler: DispatchQueue.main))
+          ContentView(viewModel: RepositoryListViewModel(mainScheduler: DispatchQueue.main))
         }
     }
 }

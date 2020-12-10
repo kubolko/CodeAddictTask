@@ -6,18 +6,17 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
-struct CommitViewSample: View {
-    let Imagee: String = "Sample"
-    let AuthorName: String = "RepoAuthorName"
-    let Score: String = "420"
-    let RepoTitle: String = "RepoTitle"
+struct CommitView: View {
+    
+    let repo: Repository
     
     var body: some View {
         GeometryReader{ geo in
             VStack(){
         ZStack(){
-            Image(Imagee)
+            WebImage(url: repo.avatar_id)
                 .resizable()
                 .frame(width: geo.size.width, height: 263)
                 .scaledToFill()
@@ -30,13 +29,13 @@ struct CommitViewSample: View {
                         .font(.headline)
                         .fontWeight(.semibold)
                         .opacity(0.6)
-                    Text(AuthorName)
+                        Text("\(repo.autorName)")
                         .font(.largeTitle)
                         .bold()
                         .foregroundColor(Color.white)
                 HStack(){
                     Image(systemName: "star")
-                    Text(Score)
+                    Text("\(repo.stargazersCount)")
                 }
                 Spacer().frame(height: 22)
                 }.padding(.horizontal)
@@ -45,7 +44,7 @@ struct CommitViewSample: View {
             }
         }
                 HStack(){
-                    Text(RepoTitle)
+                    Text(repo.fullName)
                         .font(.headline)
                     Spacer()
                     Button(action: {
@@ -84,7 +83,7 @@ struct CommitViewSample: View {
                             .cornerRadius(10)
                             .padding(.horizontal)
                         HStack(){
-                            Image(systemName: "share")
+                            Image(systemName: "square.and.arrow.up")
                                 .foregroundColor(Color.blue)
                             Text("Share Repo")
                                 .foregroundColor(Color.blue)
@@ -98,9 +97,4 @@ struct CommitViewSample: View {
     }
 }
 }
-}
-struct CommitViewSample_Previews: PreviewProvider {
-    static var previews: some View {
-        CommitViewSample()
-    }
 }

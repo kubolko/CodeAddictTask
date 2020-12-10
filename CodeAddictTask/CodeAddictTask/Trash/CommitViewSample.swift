@@ -6,17 +6,18 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
-struct CommitView: View {
-    
-    let repo: Repository
+struct CommitViewSample: View {
+    let Imagee: String = "Sample"
+    let AuthorName: String = "RepoAuthorName"
+    let Score: String = "420"
+    let RepoTitle: String = "RepoTitle"
     
     var body: some View {
         GeometryReader{ geo in
             VStack(){
         ZStack(){
-            WebImage(url: repo.avatar_id)
+            Image(Imagee)
                 .resizable()
                 .frame(width: geo.size.width, height: 263)
                 .scaledToFill()
@@ -29,13 +30,13 @@ struct CommitView: View {
                         .font(.headline)
                         .fontWeight(.semibold)
                         .opacity(0.6)
-                        Text(repo.autorName)
+                    Text(AuthorName)
                         .font(.largeTitle)
                         .bold()
                         .foregroundColor(Color.white)
                 HStack(){
                     Image(systemName: "star")
-                    Text("\(repo.stargazersCount)")
+                    Text(Score)
                 }
                 Spacer().frame(height: 22)
                 }.padding(.horizontal)
@@ -44,7 +45,7 @@ struct CommitView: View {
             }
         }
                 HStack(){
-                    Text(repo.fullName)
+                    Text(RepoTitle)
                         .font(.headline)
                     Spacer()
                     Button(action: {
@@ -83,7 +84,7 @@ struct CommitView: View {
                             .cornerRadius(10)
                             .padding(.horizontal)
                         HStack(){
-                            Image(systemName: "square.and.arrow.up")
+                            Image(systemName: "share")
                                 .foregroundColor(Color.blue)
                             Text("Share Repo")
                                 .foregroundColor(Color.blue)
@@ -97,4 +98,10 @@ struct CommitView: View {
     }
 }
 }
+}
+
+struct CommitViewSample_Previews: PreviewProvider {
+    static var previews: some View {
+        CommitViewSample()
+    }
 }

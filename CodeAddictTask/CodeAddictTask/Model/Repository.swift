@@ -11,11 +11,9 @@ import Foundation
 struct Repository: Decodable, Identifiable {
     let id: Int
     let fullName: String
+    let description: String?
     let autorName: String
-    let avatar_id : URL
-//    let description: String?
     let stargazersCount: Int
+    let avatar_id: URL
     let htmlUrl: URL
-    
-    
 }

@@ -19,7 +19,10 @@ final class RepositoryListViewModel: ObservableObject {
     @Published private(set) var repositories: [Repository] = []
     @Published private(set) var errorMessage: String? = nil
     @Published private(set) var isLoading = false
-    var text: String = ""
+    var text: String?
+    init(text: String) {
+          self.text = text
+      }
 
     init<S: Scheduler>(searchRepositories: @escaping SearchRepositories = RepositoryAPI.search,
                        mainScheduler: S) {
@@ -67,6 +70,9 @@ final class RepositoryListViewModel: ObservableObject {
  
 
     func search() {
-        _searchWithQuery.send(text)
+        _searchWithQuery.send(text ?? "")
+        if text != ""{
+            print(text ?? "No text")
+        }
     }
 }

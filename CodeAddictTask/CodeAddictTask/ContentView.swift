@@ -9,32 +9,72 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var showCancelButton: Bool = false
+    
     @ObservedObject var viewModel: RepositoryListViewModel
+    @State var isSearching = false
     
     var body: some View {
         
         NavigationView {
             ScrollView{
                 LazyVStack {
-                    SearchBar(text:  $viewModel.text, placeholder: "Search")
-                    Button(action: {
-                        self.viewModel.search()
-                       print("Sharing Repo")
-                    }){ZStack(){
-                        Rectangle()
-                            .fill(Color(.secondarySystemBackground))
-                            .frame(width: 118, height: 30)
-                            .cornerRadius(17)
-                        Text("View Online")
-                            .font(.callout)
-                            .foregroundColor(Color.blue)
+                    //Search Field
+                    HStack{
+                        HStack {
+                            TextField("Search terms here", text: $viewModel.text.bound
+                                      ,onCommit: {
+                                        self.viewModel.search()
+                                      })
+                                .padding(.leading, 24)
+                        }
+                        .padding()
+                        .background(Color(.systemGray5))
+                        .cornerRadius(6)
+                        .padding(.horizontal)
+                        .onTapGesture(perform: {
+                            isSearching = true
+                        })
+                        .overlay(
+                            HStack {
+                                Image(systemName: "magnifyingglass")
+                                Spacer()
+                                
+                                if isSearching {
+                                    Button(action: { viewModel.text.bound = "" }, label: {
+                                        Image(systemName: "xmark.circle.fill")
+                                            .padding(.vertical)
+                                    })
+                                    
+                                }
+                                
+                            }.padding(.horizontal, 32)
+                            .foregroundColor(.gray)
+                        ).transition(.move(edge: .trailing))
+                        .animation(.spring())
+                        
+                        if isSearching {
+                            Button(action: {
+                                isSearching = false
+                                viewModel.text.bound = ""
+                                
+                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                
+                            }, label: {
+                                Text("Cancel")
+                                    .padding(.trailing)
+                                    .padding(.leading, 0)
+                            })
+                            .transition(.move(edge: .trailing))
+                            .animation(.spring())
+                        }
                         
                     }
+                    Button<Text>(LocalizedStringKey("Search")) { self.viewModel.search() }
+                        .frame(height: 40)
+                        .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+                        .border(Color.blue)
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
                     
-                    }
-                   
-                
                     HStack(){
                         Text("Repositories")
                             .font(.title)
@@ -43,8 +83,7 @@ struct ContentView: View {
                         
                     }
                     .padding()
-                    VStack() {
-                        
+                    List{
                         if viewModel.isLoading {
                             Text("Loading...")
                         } else {
@@ -54,15 +93,35 @@ struct ContentView: View {
                             
                             ForEach(viewModel.repositories) { repository in
                                 
-                                NavigationLink(destination: CommitView(repo: repository)
-                                                
-                                              
+                                NavigationLink(destination:
+                                     CommitViewSample()
                                 ) {
+                                    
                                     Repo(repo: repository)
                                 }
                             }
                         }
                     }
+                    //                    List {
+                    //                        if viewModel.isLoading {
+                    //                            Text("Loading...")
+                    //                        } else {
+                    //                            viewModel.errorMessage.map(Text.init)?
+                    //                                .lineLimit(nil)
+                    //                                .multilineTextAlignment(.center)
+                    //
+                    //
+                    //                            ForEach(viewModel.repositories) { repository in
+                    //
+                    //                                NavigationLink(destination: CommitView(repo: repository)
+                    //
+                    //
+                    //                                ) {
+                    //                                    Repo(repo: repository)
+                    //                                }
+                    //                            }
+                    //                        }
+                    //                    }
                     
                     //                List {
                     //                    // Filtered list of names
@@ -71,85 +130,35 @@ struct ContentView: View {
                     //                    }
                     //                }
                     .navigationBarTitle(Text("Search"))
-                    .resignKeyboardOnDragGesture()
+                    
                 }
             }
         }
     }
     
 }
-struct SearchBar: UIViewRepresentable {
-
-    @Binding var text: String
-    
-    var placeholder: String
-
-    class Coordinator: NSObject, UISearchBarDelegate {
-
-        @Binding var text: String
-
-        init(text: Binding<String>) {
-            _text = text
+extension Optional where Wrapped == String {
+    var _bound: String? {
+        get {
+            return self
         }
-
-        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            text = searchText
-        }
-        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-            
+        set {
+            self = newValue
         }
     }
-
-    func makeCoordinator() -> SearchBar.Coordinator {
-        return Coordinator(text: $text)
-    }
-
-    func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
-        let searchBar = UISearchBar(frame: .zero)
-        searchBar.delegate = context.coordinator
-        searchBar.placeholder = placeholder
-        searchBar.searchBarStyle = .minimal
-        searchBar.autocapitalizationType = .none
-        return searchBar
-    }
-
-    func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<SearchBar>) {
-        uiView.text = text
+    public var bound: String {
+        get {
+            return _bound ?? ""
+        }
+        set {
+            _bound = newValue.isEmpty ? nil : newValue
+        }
     }
 }
 
 
 
-//struct ContentView_Previews2: PreviewProvider {
-//    static var previews: some View {
-//
-//        ContentView(viewModel: RepositoryListViewModel)
-//
-//
-//
-//    }
-//}
 
-extension UIApplication {
-    func endEditing(_ force: Bool) {
-        self.windows
-            .filter{$0.isKeyWindow}
-            .first?
-            .endEditing(force)
-    }
-}
 
-struct ResignKeyboardOnDragGesture: ViewModifier {
-    var gesture = DragGesture().onChanged{_ in
-        UIApplication.shared.endEditing(true)
-    }
-    func body(content: Content) -> some View {
-        content.gesture(gesture)
-    }
-}
 
-extension View {
-    func resignKeyboardOnDragGesture() -> some View {
-        return modifier(ResignKeyboardOnDragGesture())
-    }
-}
+
