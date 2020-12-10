@@ -17,17 +17,18 @@ struct ContentView: View {
         
         NavigationView {
             ScrollView{
-                LazyVStack {
+            VStack {
                     //Search Field
                     HStack{
                         HStack {
-                            TextField("Search terms here", text: $viewModel.text.bound
+                            TextField("Search", text: $viewModel.text.bound
                                       ,onCommit: {
                                         self.viewModel.search()
                                       })
-                                .padding(.leading, 24)
-                        }
-                        .padding()
+                               
+                                .padding(.leading, 32)
+                        } .frame(height: 36 )
+//                        .padding()
                         .background(Color(.systemGray5))
                         .cornerRadius(6)
                         .padding(.horizontal)
@@ -69,11 +70,9 @@ struct ContentView: View {
                         }
                         
                     }
-                    Button<Text>(LocalizedStringKey("Search")) { self.viewModel.search() }
-                        .frame(height: 40)
-                        .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
-                        .border(Color.blue)
-                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                   
+                    .cornerRadius(10)
+                   
                     
                     HStack(){
                         Text("Repositories")
@@ -83,7 +82,7 @@ struct ContentView: View {
                         
                     }
                     .padding()
-                    List{
+                 
                         if viewModel.isLoading {
                             Text("Loading...")
                         } else {
@@ -94,41 +93,15 @@ struct ContentView: View {
                             ForEach(viewModel.repositories) { repository in
                                 
                                 NavigationLink(destination:
-                                     CommitViewSample()
+                                                CommitViewSample()
                                 ) {
                                     
                                     Repo(repo: repository)
-                                }
+                                }.navigationBarTitle(Text("Search"))
                             }
                         }
                     }
-                    //                    List {
-                    //                        if viewModel.isLoading {
-                    //                            Text("Loading...")
-                    //                        } else {
-                    //                            viewModel.errorMessage.map(Text.init)?
-                    //                                .lineLimit(nil)
-                    //                                .multilineTextAlignment(.center)
-                    //
-                    //
-                    //                            ForEach(viewModel.repositories) { repository in
-                    //
-                    //                                NavigationLink(destination: CommitView(repo: repository)
-                    //
-                    //
-                    //                                ) {
-                    //                                    Repo(repo: repository)
-                    //                                }
-                    //                            }
-                    //                        }
-                    //                    }
                     
-                    //                List {
-                    //                    // Filtered list of names
-                    //                    ForEach(array.filter{$0.hasPrefix(searchText) || searchText == ""}, id:\.self) {
-                    //                        searchText in Text(searchText)
-                    //                    }
-                    //                }
                     .navigationBarTitle(Text("Search"))
                     
                 }
@@ -136,7 +109,7 @@ struct ContentView: View {
         }
     }
     
-}
+
 extension Optional where Wrapped == String {
     var _bound: String? {
         get {

@@ -11,6 +11,7 @@ import Foundation
 import SwiftUI
 
 final class RepositoryListViewModel: ObservableObject {
+    
     typealias SearchRepositories = (String) -> AnyPublisher<Result<[Repository], ErrorResponse>, Never>
 
     private let _searchWithQuery = PassthroughSubject<String, Never>()
@@ -67,12 +68,8 @@ final class RepositoryListViewModel: ObservableObject {
             .assign(to: \.errorMessage, on: self)
             .store(in: &cancellables)
     }
- 
 
     func search() {
         _searchWithQuery.send(text ?? "")
-        if text != ""{
-            print(text ?? "No text")
-        }
     }
 }
