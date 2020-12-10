@@ -108,7 +108,7 @@
 		82065C3C25801B4900192D65 /* CodeAddictTask */ = {
 			isa = PBXGroup;
 			children = (
-				825883B6258254BF005C63AF /* View */,
+				825883B6258254BF005C63AF /* ViewModel */,
 				8258839425824A13005C63AF /* Extension */,
 				8258839825824A18005C63AF /* Model */,
 				82065C3D25801B4900192D65 /* CodeAddictTaskApp.swift */,
@@ -173,12 +173,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		825883B6258254BF005C63AF /* View */ = {
+		825883B6258254BF005C63AF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				825883B8258254BF005C63AF /* RepositoryListViewModel.swift */,
 			);
-			path = View;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

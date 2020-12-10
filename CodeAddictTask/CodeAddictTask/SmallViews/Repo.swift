@@ -44,7 +44,11 @@ struct Repo : View {
                     }
                 }
                 Spacer()
-            }
+                Image(systemName: "chevron.right")
+                Spacer().frame(width:16)
+            }.frame(width: 343, height: 92)
+            .clipped()
         }
     }
 }
+
