@@ -93,7 +93,7 @@ struct ContentView: View {
                             ForEach(viewModel.repositories) { repository in
                                 
                                 NavigationLink(destination:
-                                                CommitViewSample()
+                                                CommitView(repo: repository)
                                 ) {
                                     
                                     Repo(repo: repository)
@@ -105,8 +105,8 @@ struct ContentView: View {
                     .navigationBarTitle(Text("Search"))
                     
                 }
-            }
         }
+    }
     }
     
 
