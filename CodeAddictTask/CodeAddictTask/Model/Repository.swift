@@ -11,6 +11,7 @@ import Foundation
 struct Repository: Decodable, Identifiable {
     let id: Int
     let fullName: String
+    let login: String?
     let description: String?
     let stargazersCount: Int
     let htmlUrl: URL

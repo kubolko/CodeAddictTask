@@ -11,6 +11,7 @@
 		82065C3E25801B4900192D65 /* CodeAddictTaskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82065C3D25801B4900192D65 /* CodeAddictTaskApp.swift */; };
 		82065C4225801B4E00192D65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82065C4125801B4E00192D65 /* Assets.xcassets */; };
 		82065C4525801B4E00192D65 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82065C4425801B4E00192D65 /* Preview Assets.xcassets */; };
+		8228958C25839DB000F58CF0 /* ShareRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228958B25839DB000F58CF0 /* ShareRepo.swift */; };
 		8258839D25824A18005C63AF /* Publisher.Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8258839525824A14005C63AF /* Publisher.Extension.swift */; };
 		8258839E25824A18005C63AF /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8258839625824A14005C63AF /* Combine.swift */; };
 		8258839F25824A18005C63AF /* URLSession.Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8258839725824A14005C63AF /* URLSession.Combine.swift */; };
@@ -38,6 +39,7 @@
 		82065C4125801B4E00192D65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82065C4425801B4E00192D65 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		82065C4625801B4E00192D65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8228958B25839DB000F58CF0 /* ShareRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRepo.swift; sourceTree = "<group>"; };
 		8258839525824A14005C63AF /* Publisher.Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Publisher.Extension.swift; sourceTree = "<group>"; };
 		8258839625824A14005C63AF /* Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Combine.swift; sourceTree = "<group>"; };
 		8258839725824A14005C63AF /* URLSession.Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSession.Combine.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				82C1080F25817E4C00CF715A /* RepositoryView.swift */,
 				829708F725801E2F005B128F /* Repo.swift */,
 				82C10802258167A800CF715A /* CommitView.swift */,
+				8228958B25839DB000F58CF0 /* ShareRepo.swift */,
 			);
 			path = SmallViews;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				825883BC258254BF005C63AF /* RepositoryListView.swift in Sources */,
 				82C10803258167A800CF715A /* CommitView.swift in Sources */,
 				825883A325824A18005C63AF /* ErrorResponse.swift in Sources */,
+				8228958C25839DB000F58CF0 /* ShareRepo.swift in Sources */,
 				828BCF142580C966001295BD /* CommitViewSample.swift in Sources */,
 				8258839F25824A18005C63AF /* URLSession.Combine.swift in Sources */,
 				82C1081025817E4C00CF715A /* RepositoryView.swift in Sources */,

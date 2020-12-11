@@ -10,6 +10,7 @@ import SwiftUI
 struct CommitView: View {
    
     let repo : Repository
+    @State var isShowingSheet = false
     
     var body: some View {
         GeometryReader{ geo in
@@ -28,7 +29,7 @@ struct CommitView: View {
                         .font(.headline)
                         .fontWeight(.semibold)
                         .opacity(0.6)
-                        Text(repo.fullName)
+                        Text(repo.login ?? "Data error")
                         .font(.largeTitle)
                         .bold()
                         .foregroundColor(Color.white)
@@ -53,7 +54,8 @@ struct CommitView: View {
                             .fill(Color(.secondarySystemBackground))
                             .frame(width: 118, height: 30)
                             .cornerRadius(17)
-                        Text("View Online")
+                        
+                        Link("View Online", destination: repo.htmlUrl)
                             .font(.callout)
                             .foregroundColor(Color.blue)
                         
@@ -75,6 +77,7 @@ struct CommitView: View {
           Spacer()
                 Button(action: {
                    print("Sharing Repo")
+                self.isShowingSheet = true
                 }) {
                     ZStack{
                         Rectangle()
@@ -83,7 +86,7 @@ struct CommitView: View {
                             .cornerRadius(10)
                             .padding(.horizontal)
                         HStack(){
-                            Image(systemName: "share")
+                            Image(systemName: "square.and.arrow.up")
                                 .foregroundColor(Color.blue)
                             Text("Share Repo")
                                 .foregroundColor(Color.blue)
@@ -94,6 +97,9 @@ struct CommitView: View {
                 }
                 Spacer()
                     .frame(height: 44)
+    }
+            .sheet(isPresented: $isShowingSheet) {
+                ShareSheet(activityItems: ["Check this Repo! Dostałem tęp prackę? 🥺 \n \(repo.htmlUrl)"])
     }
         }.edgesIgnoringSafeArea(.all)
         

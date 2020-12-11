@@ -11,7 +11,6 @@ import SwiftUI
 struct RepositoryView : View {
 
     let repository: Repository
-
     var body: some View {
         
         VStack(alignment: .leading) {
